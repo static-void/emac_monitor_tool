@@ -4,11 +4,20 @@ This tool allows you to configure an emac monitor using i2c. I'm using the inter
 
 https://en.wikibooks.org/wiki/How_to_modify_an_eMac_to_use_as_an_external_monitor
 
-It turns out this is available on /dev/i2c-0. It lets you set horizontal/vertical position/size, etc. It isn't entirely clear what all the controls do. And it turns out that you can't read the values back, so I have had to take a guess at roughly "OKish" initial values. As a result the revert button takes you back to these OKish values, which could look a bit odd. 
+It turns out this is available on /dev/i2c-0. It lets you set horizontal/vertical position/size, etc. 
+It isn't entirely clear what all the controls do, but it's good for centering your display.
 
-I also found that you can read a bunch of other registers from device 0x53 on the bus.. address 0x0 to 0x1d have values set, but I don't know what they are for. They aren't the initial values for the monitor config and changing them doesn't have any noticeable effect.
+It turns out that you can't read the values back, so I have had to take a guess at roughly "OKish"
+initial values. As a result the revert button takes you back to these OKish values, which could 
+look a bit odd. 
 
-TODO is to allow saving/loading of the settings, and I guess it might be nice to automatically set the config at boot. But as long as I can set the horizontal/vertical position and size I am not too worried about this at present.
+I also found that you can read a bunch of other registers from device 0x53 on the bus.. address 0x0 
+to 0x1d have values that are not 0xff, but I don't know what they are for. They aren't the initial 
+values for the monitor config and changing them doesn't have any noticeable effect.
+
+TODO is to allow saving/loading of the settings, and I guess it might be nice to automatically set 
+the config at boot. But as long as I can set the horizontal/vertical position and size I am not too 
+worried about this at present.
 
 BSD licensed. See the code.
 
@@ -24,4 +33,3 @@ make
 sudo make install
 
 The binary generated is called "emt" and will be install in /usr/sbin. 
-
